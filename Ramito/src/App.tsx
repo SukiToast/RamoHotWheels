@@ -36,7 +36,8 @@ const HEART_COLORS = [
 ];
 
 /** Tamaño de la escena del ramo. */
-const SCENE_STYLE: CSSProperties = {
-  width: "min(92vw, 400px, 41vh)",
+const SCENE_STYLE: React.CSSProperties = {
+  width: "min(92vw, 400px)",
+  height: "min(78vh, 560px)",
   aspectRatio: "360 / 560",
 };
