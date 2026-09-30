@@ -1,4 +1,4 @@
-import { useMemo, useRef, useState } from "react";
+import React, { useMemo, useRef } from "react";
 import { regalo, type AutoConfig } from "../config/regalo";
 import { LEAF_MIDRIB, LEAF_PATH, PETAL_PATH } from "../lib/cars";
 import HotWheelsPack from "./HotWheelsPack";
