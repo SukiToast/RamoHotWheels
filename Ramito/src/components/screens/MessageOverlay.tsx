@@ -28,6 +28,7 @@ export default function MessageOverlay({ onContinue }: Props) {
           className="pointer-events-none absolute -left-16 -top-16 h-52 w-52 rounded-full blur-3xl"
           style={{ background: "rgba(94,168,255,0.35)" }}
         />
+
         <div
           className="pointer-events-none absolute -bottom-20 -right-16 h-56 w-56 rounded-full blur-3xl"
           style={{ background: "rgba(255,123,169,0.3)" }}
@@ -37,16 +38,21 @@ export default function MessageOverlay({ onContinue }: Props) {
           {/* Ornamento superior */}
           <div className="mb-4 flex items-center justify-center gap-3">
             <span className="h-px w-10 bg-gradient-to-r from-transparent to-blue-300/60" />
+
             <HeartIcon className="h-4 w-4 text-pink-400" />
             <HeartIcon className="h-3 w-3 text-blue-300" />
             <HeartIcon className="h-4 w-4 text-pink-400" />
+
             <span className="h-px w-10 bg-gradient-to-l from-transparent to-blue-300/60" />
           </div>
 
           {/* Nombre */}
           <p
             className="font-script text-gradient-pink"
-            style={{ fontSize: "clamp(2.1rem, 7.5vw, 3.1rem)", lineHeight: 1.2 }}
+            style={{
+              fontSize: "clamp(2.1rem, 7.5vw, 3.1rem)",
+              lineHeight: 1.2,
+            }}
           >
             {regalo.nombre}
           </p>
@@ -54,7 +60,9 @@ export default function MessageOverlay({ onContinue }: Props) {
           {/* Mensaje principal */}
           <p
             className="mx-auto mt-4 max-w-[34ch] font-medium leading-relaxed text-blue-50/95"
-            style={{ fontSize: "clamp(0.98rem, 4.2vw, 1.16rem)" }}
+            style={{
+              fontSize: "clamp(0.98rem, 4.2vw, 1.16rem)",
+            }}
           >
             {regalo.mensaje}
           </p>
@@ -69,7 +77,9 @@ export default function MessageOverlay({ onContinue }: Props) {
           {/* Mensaje secundario */}
           <p
             className="mx-auto max-w-[32ch] italic leading-relaxed text-pink-200/90"
-            style={{ fontSize: "clamp(0.92rem, 4vw, 1.08rem)" }}
+            style={{
+              fontSize: "clamp(0.92rem, 4vw, 1.08rem)",
+            }}
           >
             {regalo.mensajeSecundario}
           </p>
