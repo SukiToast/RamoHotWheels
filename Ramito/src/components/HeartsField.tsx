@@ -84,6 +84,7 @@ export default function HeartsField({
             viewBox="0 0 24 24"
             className="h-full w-full"
             fill="currentColor"
+            aria-hidden="true"
           >
             <path d={HEART_PATH} />
           </svg>
@@ -195,15 +196,11 @@ export function CarSilhouettes() {
             animation: `drift-right ${c.dur}s linear ${c.delay}s infinite`,
             filter: "drop-shadow(0 0 10px rgba(94,168,255,0.5))",
           }}
+          aria-hidden="true"
         >
-          <g transform="translate(0,0)">
-            <path d={CAR_SHAPES[c.tipo].body} fill="#9EC9FF" />
-          </g>
+          <path d={CAR_SHAPES[c.tipo].body} fill="#9EC9FF" />
         </svg>
       ))}
-    </div>
-  );
-}
     </div>
   );
 }
