@@ -2,7 +2,7 @@ import { StarField, CarSilhouettes } from "./HeartsField";
 
 export default function Background() {
   return (
-    <div className="pointer-events-none fixed inset-0 -z-10 overflow-hidden bg-[#040A1E]">
+    <div className="pointer-events-none fixed inset-0 z-0 overflow-hidden bg-[#040A1E]">
       {/* Degradado base azul marino */}
       <div
         className="absolute inset-0"
@@ -16,7 +16,8 @@ export default function Background() {
       <div
         className="absolute -left-[20vw] -top-[24vh] h-[70vw] w-[70vw] rounded-full blur-3xl"
         style={{
-          background: "radial-gradient(circle, rgba(46,124,246,0.5) 0%, transparent 65%)",
+          background:
+            "radial-gradient(circle, rgba(46,124,246,0.5) 0%, transparent 65%)",
           animation: "orb-float 18s ease-in-out infinite",
         }}
       />
@@ -25,7 +26,8 @@ export default function Background() {
       <div
         className="absolute -bottom-[26vh] -right-[22vw] h-[80vw] w-[80vw] rounded-full blur-3xl"
         style={{
-          background: "radial-gradient(circle, rgba(255,123,169,0.4) 0%, transparent 65%)",
+          background:
+            "radial-gradient(circle, rgba(255,123,169,0.4) 0%, transparent 65%)",
           animation: "orb-float 22s ease-in-out infinite reverse",
         }}
       />
@@ -34,7 +36,8 @@ export default function Background() {
       <div
         className="absolute left-1/2 top-[38%] h-[90vw] w-[90vw] -translate-x-1/2 -translate-y-1/2 rounded-full blur-3xl"
         style={{
-          background: "radial-gradient(circle, rgba(94,168,255,0.16) 0%, transparent 60%)",
+          background:
+            "radial-gradient(circle, rgba(94,168,255,0.16) 0%, transparent 60%)",
         }}
       />
 
