@@ -1,10 +1,15 @@
 import { useMemo } from "react";
 import { CAR_SHAPES, HEART_PATH } from "../lib/cars";
 
-/** Icono de corazón reutilizable  */
+/** Icono de corazón reutilizable */
 export function HeartIcon({ className = "" }: { className?: string }) {
   return (
-    <svg viewBox="0 0 24 24" className={`h-full w-full ${className}`} fill="currentColor" aria-hidden="true">
+    <svg
+      viewBox="0 0 24 24"
+      className={`h-full w-full ${className}`}
+      fill="currentColor"
+      aria-hidden="true"
+    >
       <path d={HEART_PATH} />
     </svg>
   );
@@ -21,9 +26,15 @@ interface Props {
   colors?: string[];
 }
 
-const PALETTE = ["#FF7BA9", "#5EB0FF", "#FFFFFF", "#FFB3CC", "#FFD86B"];
+const PALETTE = [
+  "#FF7BA9",
+  "#5EB0FF",
+  "#FFFFFF",
+  "#FFB3CC",
+  "#FFD86B",
+];
 
-/** Capa de corazones flotando lentamente. */
+/** Capa de corazones flotando lentamente */
 export default function HeartsField({
   count = 14,
   className = "",
@@ -49,7 +60,10 @@ export default function HeartsField({
   );
 
   return (
-    <div className={`pointer-events-none absolute inset-0 overflow-hidden ${className}`} aria-hidden="true">
+    <div
+      className={`pointer-events-none absolute inset-0 overflow-hidden ${className}`}
+      aria-hidden="true"
+    >
       {hearts.map((h, i) => (
         <span
           key={i}
@@ -66,7 +80,11 @@ export default function HeartsField({
             animationDelay: `${h.delay}s`,
           }}
         >
-          <svg viewBox="0 0 24 24" className="h-full w-full" fill="currentColor">
+          <svg
+            viewBox="0 0 24 24"
+            className="h-full w-full"
+            fill="currentColor"
+          >
             <path d={HEART_PATH} />
           </svg>
         </span>
@@ -75,7 +93,7 @@ export default function HeartsField({
   );
 }
 
-/** Estrellas parpadeando en el fondo. */
+/** Estrellas parpadeando en el fondo */
 export function StarField({ count = 16 }: { count?: number }) {
   const stars = useMemo(
     () =>
@@ -90,7 +108,10 @@ export function StarField({ count = 16 }: { count?: number }) {
   );
 
   return (
-    <div className="pointer-events-none absolute inset-0" aria-hidden="true">
+    <div
+      className="pointer-events-none absolute inset-0"
+      aria-hidden="true"
+    >
       {stars.map((s, i) => (
         <span
           key={i}
@@ -109,21 +130,59 @@ export function StarField({ count = 16 }: { count?: number }) {
   );
 }
 
-/** Autos de fondo. */
+/** Autos de fondo */
 export function CarSilhouettes() {
   const cars = useMemo(
     () => [
-      { tipo: "deportivo" as const, top: "12%", dur: 56, delay: -6, opacity: 0.07, width: 190 },
-      { tipo: "muscle" as const, top: "30%", dur: 74, delay: -22, opacity: 0.05, width: 230 },
-      { tipo: "clasico" as const, top: "48%", dur: 64, delay: -40, opacity: 0.06, width: 170 },
-      { tipo: "deportivo" as const, top: "64%", dur: 82, delay: -12, opacity: 0.05, width: 210 },
-      { tipo: "muscle" as const, top: "78%", dur: 70, delay: -50, opacity: 0.06, width: 180 },
+      {
+        tipo: "deportivo" as const,
+        top: "12%",
+        dur: 56,
+        delay: -6,
+        opacity: 0.07,
+        width: 190,
+      },
+      {
+        tipo: "muscle" as const,
+        top: "30%",
+        dur: 74,
+        delay: -22,
+        opacity: 0.05,
+        width: 230,
+      },
+      {
+        tipo: "clasico" as const,
+        top: "48%",
+        dur: 64,
+        delay: -40,
+        opacity: 0.06,
+        width: 170,
+      },
+      {
+        tipo: "deportivo" as const,
+        top: "64%",
+        dur: 82,
+        delay: -12,
+        opacity: 0.05,
+        width: 210,
+      },
+      {
+        tipo: "muscle" as const,
+        top: "78%",
+        dur: 70,
+        delay: -50,
+        opacity: 0.06,
+        width: 180,
+      },
     ],
     [],
   );
 
   return (
-    <div className="pointer-events-none absolute inset-0 overflow-hidden" aria-hidden="true">
+    <div
+      className="pointer-events-none absolute inset-0 overflow-hidden"
+      aria-hidden="true"
+    >
       {cars.map((c, i) => (
         <svg
           key={i}
@@ -142,6 +201,9 @@ export function CarSilhouettes() {
           </g>
         </svg>
       ))}
+    </div>
+  );
+}
     </div>
   );
 }
