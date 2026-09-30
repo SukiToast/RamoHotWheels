@@ -1,0 +1,700 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ============================================================
+   BASE
+   ============================================================ */
+
+html,
+body,
+#root {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  background: #040a1e;
+  color: #fff;
+  font-family: "Poppins", ui-sans-serif, system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+  overscroll-behavior: none;
+}
+
+.screen {
+  min-height: 100vh;
+  min-height: 100dvh;
+}
+
+.font-script {
+  font-family: "Great Vibes", "Poppins", cursive;
+}
+
+.text-gradient {
+  background: linear-gradient(
+    100deg,
+    #dbeafe 0%,
+    #9ec9ff 35%,
+    #ffc2d8 70%,
+    #ffe3ee 100%
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.text-gradient-pink {
+  background: linear-gradient(
+    100deg,
+    #ffd7e6 0%,
+    #ff9bbd 55%,
+    #b7d9ff 100%
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* ============================================================
+   TEXTURA Y VIÑETA
+   ============================================================ */
+
+.grain {
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='140' height='140'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/></filter><rect width='140' height='140' filter='url(%23n)' opacity='0.55'/></svg>");
+  opacity: 0.05;
+  mix-blend-mode: overlay;
+}
+
+.vignette {
+  background: radial-gradient(
+    120% 90% at 50% 40%,
+    transparent 45%,
+    rgba(2, 6, 20, 0.55) 100%
+  );
+}
+
+/* ============================================================
+   BOTONES
+   ============================================================ */
+
+.btn-gift {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  background: linear-gradient(
+    105deg,
+    #2e7cf6 0%,
+    #4da3ff 40%,
+    #ff7ba9 100%
+  );
+  box-shadow:
+    0 12px 40px rgba(255, 123, 169, 0.35),
+    0 6px 24px rgba(46, 124, 246, 0.45),
+    inset 0 1px 0 rgba(255, 255, 255, 0.45);
+  transition:
+    transform 0.18s ease,
+    box-shadow 0.18s ease;
+  animation: pulse-glow 2.8s ease-in-out infinite;
+}
+
+.btn-gift:active {
+  transform: scale(0.955);
+  box-shadow:
+    0 6px 18px rgba(255, 123, 169, 0.4),
+    0 3px 12px rgba(46, 124, 246, 0.4);
+}
+
+.btn-soft {
+  background: linear-gradient(
+    105deg,
+    rgba(46, 124, 246, 0.28),
+    rgba(255, 123, 169, 0.3)
+  );
+  border: 1px solid rgba(255, 255, 255, 0.28);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  transition:
+    transform 0.18s ease,
+    background 0.18s ease;
+}
+
+.btn-soft:active {
+  transform: scale(0.955);
+  background: linear-gradient(
+    105deg,
+    rgba(46, 124, 246, 0.42),
+    rgba(255, 123, 169, 0.45)
+  );
+}
+
+.btn-shimmer::after {
+  content: "";
+  position: absolute;
+  inset: -40% -60%;
+  background: linear-gradient(
+    105deg,
+    transparent 40%,
+    rgba(255, 255, 255, 0.55) 50%,
+    transparent 60%
+  );
+  transform: translateX(-130%);
+  animation: shimmer-sweep 3.2s ease-in-out infinite;
+  pointer-events: none;
+}
+
+/* ============================================================
+   CORAZONES
+   ============================================================ */
+
+.heart-float {
+  animation: heart-rise linear infinite;
+  will-change: transform, opacity;
+}
+
+.heart-burst {
+  animation: heart-burst 1.5s cubic-bezier(0.22, 0.8, 0.36, 1)
+    forwards;
+  will-change: transform, opacity;
+}
+
+/* ============================================================
+   ANIMACIONES GENERALES
+   ============================================================ */
+
+@keyframes heart-rise {
+  0% {
+    transform: translate3d(0, 0, 0) scale(0.55) rotate(-8deg);
+    opacity: 0;
+  }
+
+  12% {
+    opacity: 1;
+  }
+
+  50% {
+    transform:
+      translate3d(
+        calc(var(--dx, 0px) * 0.5),
+        calc(var(--dist, -110vh) * 0.5),
+        0
+      )
+      scale(1)
+      rotate(6deg);
+    opacity: 0.9;
+  }
+
+  100% {
+    transform:
+      translate3d(var(--dx, 0px), var(--dist, -110vh), 0)
+      scale(0.85)
+      rotate(-4deg);
+    opacity: 0;
+  }
+}
+
+@keyframes heart-burst {
+  0% {
+    transform: translate(-50%, -50%) scale(0.15) rotate(0deg);
+    opacity: 0;
+  }
+
+  18% {
+    opacity: 1;
+    transform: translate(-50%, -78%) scale(1.15) rotate(-10deg);
+  }
+
+  100% {
+    transform:
+      translate(
+        calc(-50% + var(--dx, 0px)),
+        calc(-50% - var(--rise, 70px))
+      )
+      scale(0.6)
+      rotate(16deg);
+    opacity: 0;
+  }
+}
+
+@keyframes twinkle {
+  0%,
+  100% {
+    opacity: 0.15;
+    transform: scale(0.8);
+  }
+
+  50% {
+    opacity: 0.95;
+    transform: scale(1.25);
+  }
+}
+
+@keyframes drift-right {
+  0% {
+    transform: translateX(-35vw);
+  }
+
+  100% {
+    transform: translateX(135vw);
+  }
+}
+
+@keyframes orb-float {
+  0%,
+  100% {
+    transform: translate(0, 0) scale(1);
+  }
+
+  50% {
+    transform: translate(4vw, 3vh) scale(1.08);
+  }
+}
+
+/* ============================================================
+   RAMO
+   ============================================================ */
+
+@keyframes bouquet-float {
+  0%,
+  100% {
+    transform: translateY(0) rotate(-0.4deg);
+  }
+
+  50% {
+    transform: translateY(-9px) rotate(0.4deg);
+  }
+}
+
+.bouquet-float {
+  animation: bouquet-float 6.5s ease-in-out infinite;
+  will-change: transform;
+}
+
+@keyframes sway {
+  0%,
+  100% {
+    transform: rotate(-2.6deg);
+  }
+
+  50% {
+    transform: rotate(2.6deg);
+  }
+}
+
+@keyframes sway-subtle {
+  0%,
+  100% {
+    transform: rotate(-1.2deg);
+  }
+
+  50% {
+    transform: rotate(1.2deg);
+  }
+}
+
+.sway {
+  animation: sway 4.2s ease-in-out infinite;
+  transform-box: fill-box;
+  transform-origin: 0% 100%;
+  will-change: transform;
+}
+
+.sway-subtle {
+  animation: sway-subtle 5.6s ease-in-out infinite;
+  transform-box: fill-box;
+  transform-origin: 0% 100%;
+  will-change: transform;
+}
+
+@keyframes draw-stem {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+.anim-draw {
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+  animation: draw-stem 0.95s cubic-bezier(0.4, 0, 0.3, 1)
+    forwards;
+}
+
+@keyframes rise-in {
+  0% {
+    opacity: 0;
+    transform: translateY(46px) scale(0.94);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.anim-rise {
+  opacity: 0;
+  animation: rise-in 0.85s cubic-bezier(0.22, 0.9, 0.3, 1)
+    forwards;
+}
+
+@keyframes pop-in {
+  0% {
+    opacity: 0;
+    transform: scale(0);
+  }
+
+  70% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.anim-pop {
+  opacity: 0;
+  animation: pop-in 0.62s cubic-bezier(0.34, 1.56, 0.64, 1)
+    forwards;
+  transform-box: fill-box;
+  transform-origin: center;
+}
+
+/* ============================================================
+   EMPAQUE
+   ============================================================ */
+
+@keyframes pack-in {
+  0% {
+    opacity: 0;
+    transform:
+      translateY(34px)
+      scale(0.5)
+      rotate(var(--tilt-extra, 7deg));
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1) rotate(0deg);
+  }
+}
+
+.anim-pack-in {
+  opacity: 0;
+  animation: pack-in 0.78s cubic-bezier(0.34, 1.56, 0.64, 1)
+    forwards;
+  will-change: transform, opacity;
+}
+
+@keyframes pack-bounce {
+  0% {
+    transform: scale(1) rotate(0deg);
+  }
+
+  22% {
+    transform: scale(1.1) rotate(-3.5deg);
+  }
+
+  48% {
+    transform: scale(0.96) rotate(2.4deg);
+  }
+
+  74% {
+    transform: scale(1.045) rotate(-1.2deg);
+  }
+
+  100% {
+    transform: scale(1) rotate(0deg);
+  }
+}
+
+.pack-bounce {
+  animation: pack-bounce 0.7s cubic-bezier(0.36, 0.9, 0.4, 1);
+}
+
+.pack-bounce-2 {
+  animation: pack-bounce 0.7s cubic-bezier(0.36, 0.9, 0.4, 1);
+}
+
+.pack-shine {
+  position: relative;
+  overflow: hidden;
+}
+
+.pack-shine::after {
+  content: "";
+  position: absolute;
+  inset: -25% -45%;
+  background: linear-gradient(
+    105deg,
+    transparent 38%,
+    rgba(255, 255, 255, 0.5) 50%,
+    transparent 62%
+  );
+  transform: translateX(-130%);
+  animation: shine-sweep 0.9s ease var(--glint-delay, 0s) 1
+    both;
+  pointer-events: none;
+  z-index: 3;
+}
+
+.pack-shine-active::after {
+  animation: shine-sweep 0.85s ease 0.04s 2;
+}
+
+@keyframes shine-sweep {
+  0% {
+    transform: translateX(-130%);
+  }
+
+  100% {
+    transform: translateX(130%);
+  }
+}
+
+/* ============================================================
+   TOOLTIPS
+   ============================================================ */
+
+@keyframes tooltip-pop {
+  0% {
+    opacity: 0;
+    transform: translateY(8px) scale(0.7);
+  }
+
+  14% {
+    opacity: 1;
+    transform: translateY(0) scale(1.06);
+  }
+
+  22% {
+    transform: translateY(0) scale(1);
+  }
+
+  78% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+
+  100% {
+    opacity: 0;
+    transform: translateY(-10px) scale(0.94);
+  }
+}
+
+.tooltip-pop {
+  animation: tooltip-pop 1.9s cubic-bezier(0.22, 0.9, 0.3, 1)
+    forwards;
+}
+
+/* ============================================================
+   CHISPAS
+   ============================================================ */
+
+@keyframes spark-fly {
+  0% {
+    transform: translate(-50%, -50%) scale(0) rotate(0deg);
+    opacity: 0;
+  }
+
+  14% {
+    opacity: 1;
+  }
+
+  100% {
+    transform:
+      translate(
+        calc(-50% + var(--dx, 0px)),
+        calc(-50% + var(--dy, 40px))
+      )
+      scale(0.85)
+      rotate(var(--rot, 120deg));
+    opacity: 0;
+  }
+}
+
+.spark-piece {
+  animation: spark-fly 1.5s cubic-bezier(0.18, 0.7, 0.32, 1)
+    forwards;
+  will-change: transform, opacity;
+}
+
+@keyframes spark-ring {
+  0% {
+    transform: translate(-50%, -50%) scale(0.2);
+    opacity: 0.9;
+  }
+
+  100% {
+    transform: translate(-50%, -50%) scale(2.6);
+    opacity: 0;
+  }
+}
+
+.spark-ring {
+  animation: spark-ring 1.1s ease-out forwards;
+}
+
+@keyframes spark-flash {
+  0% {
+    transform: translate(-50%, -50%) scale(0.3);
+    opacity: 0.95;
+  }
+
+  100% {
+    transform: translate(-50%, -50%) scale(1.9);
+    opacity: 0;
+  }
+}
+
+.spark-flash {
+  animation: spark-flash 0.9s ease-out forwards;
+}
+
+/* ============================================================
+   BRILLO DE BOTONES
+   ============================================================ */
+
+@keyframes pulse-glow {
+  0%,
+  100% {
+    box-shadow:
+      0 12px 40px rgba(255, 123, 169, 0.32),
+      0 6px 24px rgba(46, 124, 246, 0.42),
+      inset 0 1px 0 rgba(255, 255, 255, 0.45);
+  }
+
+  50% {
+    box-shadow:
+      0 16px 52px rgba(255, 123, 169, 0.5),
+      0 8px 30px rgba(46, 124, 246, 0.55),
+      inset 0 1px 0 rgba(255, 255, 255, 0.45);
+  }
+}
+
+@keyframes shimmer-sweep {
+  0% {
+    transform: translateX(-130%);
+  }
+
+  55%,
+  100% {
+    transform: translateX(130%);
+  }
+}
+
+/* ============================================================
+   ENTRADAS Y TRANSICIONES
+   ============================================================ */
+
+@keyframes fade-up {
+  0% {
+    opacity: 0;
+    transform: translateY(22px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.fade-up {
+  opacity: 0;
+  animation: fade-up 0.7s cubic-bezier(0.22, 0.9, 0.3, 1)
+    forwards;
+}
+
+@keyframes bounce-soft {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-7px);
+  }
+}
+
+.bounce-soft {
+  animation: bounce-soft 1.8s ease-in-out infinite;
+}
+
+@keyframes card-in {
+  0% {
+    opacity: 0;
+    transform: translateY(46px) scale(0.96);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.card-in {
+  animation: card-in 0.75s cubic-bezier(0.22, 0.9, 0.3, 1)
+    forwards;
+}
+
+@keyframes overlay-in {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+.overlay-in {
+  animation: overlay-in 0.5s ease forwards;
+}
+
+@keyframes final-in {
+  0% {
+    opacity: 0;
+    transform: scale(0.92);
+    filter: blur(6px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: scale(1);
+    filter: blur(0);
+  }
+}
+
+.final-in {
+  animation: final-in 1s cubic-bezier(0.22, 0.9, 0.3, 1)
+    forwards;
+}
+
+/* ============================================================
+   REDUCIR ANIMACIONES
+   ============================================================ */
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  .anim-draw,
+  .anim-rise,
+  .anim-pop,
+  .anim-pack-in,
+  .fade-up,
+  .card-in,
+  .overlay-in,
+  .final-in {
+    opacity: 1 !important;
+    stroke-dashoffset: 0 !important;
+    transform: none !important;
+  }
+}
