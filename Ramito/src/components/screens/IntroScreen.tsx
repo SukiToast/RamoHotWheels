@@ -5,7 +5,7 @@ interface Props {
   onOpen: (clientX: number, clientY: number) => void;
 }
 
-/** intro */
+/** Pantalla de introducción */
 export default function IntroScreen({ onOpen }: Props) {
   const handleOpen = (e: React.MouseEvent<HTMLButtonElement>) => {
     onOpen(e.clientX, e.clientY);
@@ -35,9 +35,21 @@ export default function IntroScreen({ onOpen }: Props) {
           textShadow: "0 0 60px rgba(94,168,255,0.35)",
         }}
       >
-        <span className="mr-1 align-middle" style={{ fontSize: "0.55em" }}>💙</span>
+        <span
+          className="mr-1 align-middle"
+          style={{ fontSize: "0.55em" }}
+        >
+          💙
+        </span>
+
         {regalo.tituloIntro}
-        <span className="ml-1 align-middle" style={{ fontSize: "0.55em" }}>💙</span>
+
+        <span
+          className="ml-1 align-middle"
+          style={{ fontSize: "0.55em" }}
+        >
+          💙
+        </span>
       </h1>
 
       {/* Subtítulo */}
@@ -72,7 +84,8 @@ export default function IntroScreen({ onOpen }: Props) {
       <div
         className="pointer-events-none absolute left-1/2 top-[62%] -z-0 h-[42vh] w-[42vh] -translate-x-1/2 -translate-y-1/2 rounded-full blur-3xl"
         style={{
-          background: "radial-gradient(circle, rgba(255,123,169,0.28) 0%, transparent 68%)",
+          background:
+            "radial-gradient(circle, rgba(255,123,169,0.28) 0%, transparent 68%)",
         }}
       />
     </div>
