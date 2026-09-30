@@ -414,7 +414,7 @@ export default function Bouquet({
                 <HotWheelsPack
                   auto={a}
                   index={i}
-                  entranceDelay={1.5 + i * 0.26}
+                  entranceDelay={0.9 + i * 0.22}
                   bouncing={bouncingIndex === i}
                   bounceSeq={bounceSeq}
                   showName={showNameIndex === i}
