@@ -1,3 +1,4 @@
+import React, { useEffect } from "react";
 import { regalo } from "../../config/regalo";
 import HeartsField from "../HeartsField";
 
