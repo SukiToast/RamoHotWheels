@@ -1,4 +1,4 @@
-import { useMemo, useState } from "react";
+import { useId, useState } from "react";
 import type { PointerEvent } from "react";
 import { CAR_SHAPES } from "../lib/cars";
 import type { AutoConfig } from "../config/regalo";
@@ -70,55 +70,6 @@ export default function HotWheelsPack({
           key={bouncing ? `bounce-${bounceSeq}` : `bounce-idle-${index}`}
           className={`h-full w-full ${bounceAnim}`}
         >
-
-          {/* Empaque */}
-          <div
-            role="button"
-            tabIndex={0}
-            aria-label={`Hot Wheels ${auto.nombre}`}
-            onPointerDown={onPointerDown}
-            onKeyDown={(e) => {
-              if (e.key === "Enter" || e.key === " ") {
-                onPointerDown(
-                  e as unknown as PointerEvent<HTMLDivElement>,
-                );
-              }
-            }}
-            className={`pack-shine relative h-full w-full cursor-pointer overflow-hidden rounded-[7px] select-none ring-1 ring-white/25 ${
-              showName ? "pack-shine-active" : ""
-            }`}
-            style={{
-              ["--glint-delay" as string]: `${entranceDelay + 0.62}s`,
-              filter:
-                "drop-shadow(0 10px 14px rgba(2,8,30,0.55))",
-              touchAction: "manipulation",
-            }}
-          >
-            {showSvg ? (
-              <PackSVG
-                auto={auto}
-                index={index}
-                uid={uid}
-              />
-            ) : (
-              <img
-                src={auto.imagen}
-                alt={auto.nombre}
-                className="h-full w-full object-cover"
-                draggable={false}
-                onError={() => setImgError(true)}
-              />
-            )}
-          </div>
-        </div>
-      </div>
-    </>
-  );
-}
-        <div
-          key={bouncing ? `bounce-${bounceSeq}` : `bounce-idle-${index}`}
-          className={`h-full w-full ${bounceAnim ?? ""}`}
-        >
           {/* Empaque */}
           <div
             role="button"
@@ -162,14 +113,12 @@ export default function HotWheelsPack({
 /**
  * Genera un id seguro para evitar conflictos
  * entre gradientes SVG repetidos.
+ * Usamos useId de React (estable entre SSR/cliente).
  */
 function useIdSafe() {
-  const raw = useMemo(
-    () => `hw${Math.random().toString(36).slice(2, 9)}`,
-    [],
-  );
-
-  return raw;
+  const id = useId();
+  // React puede devolver ":r1:" que no es válido como id de SVG; lo limpiamos.
+  return `hw${id.replace(/[^a-zA-Z0-9]/g, "")}`;
 }
 
 /**
@@ -197,7 +146,7 @@ function PackSVG({
       className="h-full w-full"
       aria-hidden="true"
     >
-            <defs>
+      <defs>
         <linearGradient id={cardId} x1="0" y1="0" x2="0" y2="1">
           <stop offset="0%" stopColor={auto.color1} />
           <stop offset="100%" stopColor={auto.color2} />
@@ -206,38 +155,16 @@ function PackSVG({
         <linearGradient id={carId} x1="0" y1="0" x2="0" y2="1">
           <stop offset="0%" stopColor={auto.colorAuto} />
           <stop offset="55%" stopColor={auto.colorAuto} />
-          <stop
-            offset="100%"
-            stopColor="#000000"
-            stopOpacity="0.45"
-          />
+          <stop offset="100%" stopColor="#000000" stopOpacity="0.45" />
         </linearGradient>
 
         <linearGradient id={blisterId} x1="0" y1="0" x2="1" y2="1">
-          <stop
-            offset="0%"
-            stopColor="#FFFFFF"
-            stopOpacity="0.32"
-          />
-          <stop
-            offset="45%"
-            stopColor="#FFFFFF"
-            stopOpacity="0.1"
-          />
-          <stop
-            offset="100%"
-            stopColor="#FFFFFF"
-            stopOpacity="0.22"
-          />
+          <stop offset="0%" stopColor="#FFFFFF" stopOpacity="0.32" />
+          <stop offset="45%" stopColor="#FFFFFF" stopOpacity="0.1" />
+          <stop offset="100%" stopColor="#FFFFFF" stopOpacity="0.22" />
         </linearGradient>
 
-        <linearGradient
-          id={`flame-${uid}`}
-          x1="0"
-          y1="0"
-          x2="1"
-          y2="1"
-        >
+        <linearGradient id={`flame-${uid}`} x1="0" y1="0" x2="1" y2="1">
           <stop offset="0%" stopColor="#FFD24A" />
           <stop offset="55%" stopColor="#FF8A1F" />
           <stop offset="100%" stopColor="#F43F1B" />
@@ -253,7 +180,6 @@ function PackSVG({
         rx="7"
         fill={`url(#${cardId})`}
       />
-
       <rect
         x="1.6"
         y="1.6"
@@ -266,15 +192,7 @@ function PackSVG({
       />
 
       {/* Barra superior Hot Wheels */}
-      <rect
-        x="8"
-        y="7.5"
-        width="88"
-        height="21"
-        rx="5.5"
-        fill="#0B1B3F"
-      />
-
+      <rect x="8" y="7.5" width="88" height="21" rx="5.5" fill="#0B1B3F" />
       <rect
         x="8"
         y="7.5"
@@ -291,7 +209,6 @@ function PackSVG({
           d="M0.5,17.5 C-0.5,10.5 3,3 8.5,5 C7.8,0.8 13,-0.8 15,3.6 C17.8,0.4 22.4,3.2 20.6,8.2 C24,9.4 23.2,14.6 18.6,17 C14,19.6 3.5,20.2 0.5,17.5 Z"
           fill={`url(#flame-${uid})`}
         />
-
         <path
           d="M6,16.8 C5.4,12.6 7.6,8.4 10.8,9.6 C10.4,6.8 13.4,6 14.4,8.6 C16,6.8 18.6,8.4 17.6,11.2 C19.4,12 19,14.8 16.6,16.2 C14,17.8 8.2,18.4 6,16.8 Z"
           fill="#FFE9A8"
@@ -322,7 +239,6 @@ function PackSVG({
         rx="3.5"
         fill="rgba(0,0,0,0.32)"
       />
-
       <text
         x="52"
         y="40.6"
@@ -335,3 +251,37 @@ function PackSVG({
       >
         {auto.nombre.toUpperCase().slice(0, 16)}
       </text>
+
+      {/* Blíster */}
+      <rect
+        x="8"
+        y="49"
+        width="88"
+        height="78"
+        rx="5"
+        fill={`url(#${blisterId})`}
+        stroke="rgba(255,255,255,0.35)"
+        strokeWidth="0.8"
+      />
+
+      {/* Auto (usa el shape correspondiente) */}
+      <g transform="translate(52, 92)">
+        <path
+          d={typeof shape === "string" ? shape : shape.path}
+          fill={`url(#${carId})`}
+          transform="translate(-40, -18)"
+        />
+      </g>
+
+      {/* Brillo del blíster */}
+      <ellipse
+        cx="38"
+        cy="62"
+        rx="18"
+        ry="6"
+        fill="#FFFFFF"
+        opacity="0.18"
+      />
+    </svg>
+  );
+}
