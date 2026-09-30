@@ -12,7 +12,7 @@ export default function Background() {
         }}
       />
 
-      {/* Orbe azul (arriba-izquierda) */}
+      {/* Orbe azul */}
       <div
         className="absolute -left-[20vw] -top-[24vh] h-[70vw] w-[70vw] rounded-full blur-3xl"
         style={{
@@ -22,7 +22,7 @@ export default function Background() {
         }}
       />
 
-      {/* Orbe rosa (abajo-derecha) */}
+      {/* Orbe rosa */}
       <div
         className="absolute -bottom-[26vh] -right-[22vw] h-[80vw] w-[80vw] rounded-full blur-3xl"
         style={{
@@ -32,7 +32,7 @@ export default function Background() {
         }}
       />
 
-      {/* Orbe azul claro central suave */}
+      {/* Orbe azul claro central */}
       <div
         className="absolute left-1/2 top-[38%] h-[90vw] w-[90vw] -translate-x-1/2 -translate-y-1/2 rounded-full blur-3xl"
         style={{
@@ -41,13 +41,13 @@ export default function Background() {
         }}
       />
 
-      {/* Autos silueteados conduciendo lentamente */}
+      {/* Autos silueteados */}
       <CarSilhouettes />
 
-      {/* Estrellas parpadeando */}
+      {/* Estrellas */}
       <StarField count={18} />
 
-      {/* Grano de textura */}
+      {/* Grano */}
       <div className="grain absolute inset-0" />
 
       {/* Viñeta */}
