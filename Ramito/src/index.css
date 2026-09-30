@@ -677,12 +677,17 @@ body {
    ============================================================ */
 
 @media (prefers-reduced-motion: reduce) {
-  *,
-  *::before,
-  *::after {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
+  .heart-float,
+  .heart-burst,
+  .bouquet-float,
+  .sway,
+  .sway-subtle,
+  .spark-piece,
+  .spark-ring,
+  .spark-flash,
+  .btn-gift,
+  .btn-shimmer::after {
+    animation: none !important;
   }
 
   .anim-draw,
@@ -693,8 +698,7 @@ body {
   .card-in,
   .overlay-in,
   .final-in {
-    opacity: 1 !important;
-    stroke-dashoffset: 0 !important;
-    transform: none !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
   }
 }
