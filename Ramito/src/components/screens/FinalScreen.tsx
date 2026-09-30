@@ -8,14 +8,30 @@ interface Props {
 export default function FinalScreen({ onReplay }: Props) {
   return (
     <div className="screen relative flex flex-col items-center justify-center overflow-hidden px-6 py-12 text-center">
-      <HeartsField count={26} minSize={14} maxSize={40} durMin={8} durMax={16} />
-      <HeartsField count={10} minSize={8} maxSize={18} durMin={5} durMax={10} dist="-95vh" />
+      <HeartsField
+        count={26}
+        minSize={14}
+        maxSize={40}
+        durMin={8}
+        durMax={16}
+      />
+
+      <HeartsField
+        count={10}
+        minSize={8}
+        maxSize={18}
+        durMin={5}
+        durMax={10}
+        dist="-95vh"
+      />
 
       <div className="final-in relative z-10 flex flex-col items-center">
         {/* Corazón grande decorativo */}
         <div
           className="mb-6 flex h-16 w-16 items-center justify-center rounded-full border border-white/20 bg-white/5 backdrop-blur-md"
-          style={{ boxShadow: "0 0 40px rgba(255,123,169,0.35)" }}
+          style={{
+            boxShadow: "0 0 40px rgba(255,123,169,0.35)",
+          }}
         >
           <HeartIcon className="h-7 w-7 text-pink-400" />
         </div>
@@ -35,7 +51,9 @@ export default function FinalScreen({ onReplay }: Props) {
         {/* Nombre */}
         <p
           className="font-script text-gradient-pink mt-4"
-          style={{ fontSize: "clamp(1.9rem, 7vw, 2.8rem)" }}
+          style={{
+            fontSize: "clamp(1.9rem, 7vw, 2.8rem)",
+          }}
         >
           {regalo.nombre}
         </p>
