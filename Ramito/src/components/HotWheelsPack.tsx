@@ -1,4 +1,4 @@
-import { useId, useState } from "react";
+import React, { useMemo, useState } from "react";
 import type { PointerEvent } from "react";
 import { CAR_SHAPES } from "../lib/cars";
 import type { AutoConfig } from "../config/regalo";
